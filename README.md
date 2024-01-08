@@ -41,7 +41,7 @@ You can execute the script by adding the folder to scan for videos as a paramete
 If you get an error dealing with UnicodeEncoding errors like:
 
     File "C:\Python311\Lib\encodings\cp1252.py", line 19, in encode  
-    UnicodeEncodeError: 'charmap' codec can't encode character '\u0440' in position 59: character maps to \<undefined\>
+    UnicodeEncodeError: 'charmap' codec can't encode character '\u0440' in position 59: character maps to <undefined>
 
 Run the following command in terminal to make sure you are using UTF-8 which has all of the unicode characters.
 
