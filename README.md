@@ -4,20 +4,26 @@ Create a jpg file containing screenshots from a video presented in a grid.
 
 # Table of Contents
 
+- [Video Screenshot Grid Maker (VSGM)](#video-screenshot-grid-maker-vsgm)
+- [Table of Contents](#table-of-contents)
 - [1. Prerequisites](#1-prerequisites)
-   - [1.1 Requirements](#11-requirements)
-   - [1.2 Installing FFmpeg](#12-installing-ffmpeg)
-   - [1.2.1 Installing FFmpeg](#121-installing-ffmpeg-for-windows)
-   - [1.3 Installing the python FFmpeg wrapper](#13-installing-the-python-ffmpeg-wrapper)
+  - [1.1 Requirements](#11-requirements)
+  - [1.2 Installing FFmpeg](#12-installing-ffmpeg)
+  - [1.2.1 Installing FFmpeg for windows](#121-installing-ffmpeg-for-windows)
+  - [1.3 Installing the python FFmpeg wrapper](#13-installing-the-python-ffmpeg-wrapper)
 - [2. Usage](#2-usage)
-   - [2.1 How to use wizard](#21-how-to-use-wizard)
-   - [2.2 Scan a specific folder](#22-scan-a-specific-folder)
-   - [2.3 Example grid](#23-example-grid)
-- [3. Usage](#3-faq)
-   - [3.1 Error in UnicodeEncode](#31-error-in-unicodeencode)
-- [4. Information](#4-information)
-   - [4.1 License](#41-license)
-   - [4.2 Contributors](#42-authors)
+  - [2.1 How to use wizard](#21-how-to-use-wizard)
+  - [2.2 Scan a specific folder](#22-scan-a-specific-folder)
+  - [2.3 Example grid](#23-example-grid)
+- [3. FAQ](#3-faq)
+  - [3.1 Error in UnicodeEncode](#31-error-in-unicodeencode)
+- [4. Version History](#4-version-history)
+  - [4.1 Log](#41-log)
+    - [v1.1](#v11)
+    - [v1.0](#v10)
+- [5. Information](#5-information)
+  - [5.1 License](#51-license)
+  - [5.2 Author](#52-author)
 
 # 1. Prerequisites
 
@@ -83,12 +89,25 @@ Run the following command in terminal to make sure you are using UTF-8 which has
 
     export PYTHONIOENCODING=utf-8  
 
-# 4. Information
+# 4. Version History
 
-## 4.1 License
+## 4.1 Log
+
+### v1.1 
+    - Added videfilename and length in upper left corner  
+    - Made the final image smaller if wider than 5000 px  
+    - Added __init__py file in scripts folder  
+    - Updated example image  
+
+### v1.0
+    - Project started  
+
+# 5. Information
+
+## 5.1 License
 
 This project is licensed under the terms of the  [MIT](http://www.opensource.org/licenses/mit-license.php) License. Enjoy!
 
-## 4.2 Author
+## 5.2 Author
 
 Kim Steinhaug: [@steinhaug](http://twitter.com/steinhaug) [LinkedIn](https://no.linkedin.com/in/steinhaug) [Website](http://steinhaug.no/)

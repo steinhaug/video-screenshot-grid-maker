@@ -1,6 +1,7 @@
 import os
 from PIL import Image
-from scripts.stitch_images_create_grid import stitch_images_create_grid
+#from scripts.stitch_images_create_grid import stitch_images_create_grid
+from scripts.stitch_images_create_grid_with_text import stitch_images_create_grid
 #from scripts.process_video_extract_screens_subprocess import extract_screens_from_video
 from scripts.process_video_extract_screens import extract_screens_from_video
 
@@ -28,6 +29,17 @@ def delete_files(filenames):
             except Exception as e:
                 print(f"Error deleting {filename}: {e}")
 
+def format_time(minutes):
+    if minutes >= 60:
+        hours = int(minutes // 60)
+        remaining_minutes = int(minutes % 60)
+        if remaining_minutes == 0:
+            return f"{hours} hour{'s' if hours > 1 else ''}"
+        else:
+            return f"{hours} hour{'s' if hours > 1 else ''} {remaining_minutes} minute{'s' if remaining_minutes > 1 else ''}"
+    else:
+        return f"{int(minutes)} minute{'s' if minutes > 1 else ''}"
+
 def process_video_files(root_dir):
     for root, dirs, files in os.walk(root_dir):
         for file in files:
@@ -42,8 +54,8 @@ def process_video_files(root_dir):
                             file.write('You can safely delete this file, it\'s temporary lock file while creating screens using Video ScreenShot Maker (VSSM).')
                         delete_files(temp_screens)
                         try:
-                            extract_screens_from_video(file_path, file)
-                            stitch_images_create_grid(root, remove_extension(filename))
+                            movie_length = extract_screens_from_video(file_path, file, len(temp_screens))
+                            stitch_images_create_grid(root, remove_extension(filename), temp_screens, f"Duration: {format_time(movie_length / 30)}", 5)
                             if os.path.exists(file_path + '.delete'):
                                 os.remove(file_path + '.delete')
                         except Exception as e:

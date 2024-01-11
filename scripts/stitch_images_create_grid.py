@@ -13,7 +13,7 @@ def check_if_all_files_exist(files):
     all_exist = all(os.path.exists(file) for file in files)
     return all_exist
 
-def stitch_images_create_grid(video_folder, video_name):
+def stitch_images_create_grid(video_folder, video_name, grid_width=5):
     print(f"- Stitching extracted images together as a grid...")
 
     if check_if_all_files_exist(temp_screens):
@@ -25,6 +25,8 @@ def stitch_images_create_grid(video_folder, video_name):
         num_rows = (num_images + 4) // 5  # Three images per row
         output_width = width * 5
         output_height = height * num_rows
+
+        #print(f"- num_images: {num_images}, num_rows: {num_rows}, output_width: {output_width}, output_height: {output_height}")
 
         # Create a new image with the calculated dimensions
         result_image = Image.new("RGB", (output_width, output_height))

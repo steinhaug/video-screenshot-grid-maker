@@ -2,17 +2,18 @@ import sys
 import os
 import subprocess
 
-def extract_screens_from_video(video_file, filename):
+def extract_screens_from_video(video_file, filename="", parts=25):
     try:
         print("- Extracting screenshots from video")
 
         # Run the new script as a subprocess
-        result = subprocess.run(['python', 'lib/process_video_extract_screens.py', video_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
+        movie_length = subprocess.run(['python', 'lib/process_video_extract_screens.py', video_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
 
         # If you want to capture the output, you can access result.stdout and result.stderr
         # For example, print the captured output
         #print(result.stdout)
         #print(result.stderr)
+        return movie_length
 
     except subprocess.CalledProcessError as e:
         print(f"Error running subprocess: {e}")

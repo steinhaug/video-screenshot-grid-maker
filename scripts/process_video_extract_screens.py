@@ -2,7 +2,7 @@ import sys
 import os
 import ffmpeg
 
-def extract_screens_from_video(videofile_path, filename):
+def extract_screens_from_video(videofile_path, filename="", parts=25):
     print(f"Processing screens from video...")
 
     if os.path.exists(videofile_path):
@@ -11,7 +11,7 @@ def extract_screens_from_video(videofile_path, filename):
         width = probe['streams'][0]['width']
 
         # Set how many spots you want to extract a video from. 
-        parts = 25
+        #parts = 25
 
         intervals = time // parts
         intervals = int(intervals)
@@ -27,8 +27,11 @@ def extract_screens_from_video(videofile_path, filename):
                 .run()
             )
             i += 1
+
+        return time
     else:
         print(f"Video file does not exist, skipping")
+        return ""
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
