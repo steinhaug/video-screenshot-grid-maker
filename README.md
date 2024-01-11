@@ -2,6 +2,8 @@
 
 Create a jpg file containing screenshots from a video presented in a grid.
 
+<div class="show_none">
+
 # Table of Contents
 
 - [Video Screenshot Grid Maker (VSGM)](#video-screenshot-grid-maker-vsgm)
@@ -24,6 +26,8 @@ Create a jpg file containing screenshots from a video presented in a grid.
 - [5. Information](#5-information)
   - [5.1 License](#51-license)
   - [5.2 Author](#52-author)
+
+</div>
 
 # 1. Prerequisites
 
