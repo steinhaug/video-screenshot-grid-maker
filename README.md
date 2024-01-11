@@ -74,7 +74,7 @@ You can execute the script by adding the folder to scan for videos as a paramete
 
 ## 2.3 Example grid
 
-<img src="grid-example.jpg" alt="grid example" width="850"></img>
+<img src="grid-example.jpg?v1.1" alt="grid example" width="850"></img>
 
 # 3. FAQ
 
