@@ -1,3 +1,4 @@
+import sys
 import os
 from scripts.process_video_directory import process_video_files
 
@@ -30,22 +31,30 @@ def select_directory(directories):
             print("Invalid input. Please enter a number.")
 
 if __name__ == "__main__":
-    # Ask for a drive name
-    drive_name = input("Enter a drive name (e.g., C): ")
-    
-    # Validate and format the drive name
-    validated_drive = validate_drive(drive_name)
 
-    # Check if the drive exists
-    if os.path.exists(validated_drive) and os.path.isdir(validated_drive):
-        # List all directories on the drive
-        directories_on_drive = list_directories(validated_drive)
-
-        if not directories_on_drive:
-            print(f"No directories found on {validated_drive}.")
+    if len(sys.argv) > 1:
+        diskpath_to_check = sys.argv[1]
+        if os.path.exists(diskpath_to_check):
+            process_video_files(diskpath_to_check)
         else:
-            selected_directory = select_directory(directories_on_drive)
-            #print(f"Selected directory: {validated_drive}{selected_directory}")
-            process_video_files(validated_drive + selected_directory)
+            print("Path {diskpath_to_check} does not exist.")
     else:
-        print(f"The drive '{validated_drive}' does not exist or is not a valid drive.")
+        # Ask for a drive name
+        drive_name = input("Enter a drive name (e.g., C): ")
+        
+        # Validate and format the drive name
+        validated_drive = validate_drive(drive_name)
+
+        # Check if the drive exists
+        if os.path.exists(validated_drive) and os.path.isdir(validated_drive):
+            # List all directories on the drive
+            directories_on_drive = list_directories(validated_drive)
+
+            if not directories_on_drive:
+                print(f"No directories found on {validated_drive}.")
+            else:
+                selected_directory = select_directory(directories_on_drive)
+                #print(f"Selected directory: {validated_drive}{selected_directory}")
+                process_video_files(validated_drive + selected_directory)
+        else:
+            print(f"The drive '{validated_drive}' does not exist or is not a valid drive.")
