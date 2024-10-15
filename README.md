@@ -21,6 +21,7 @@ Create a jpg file containing screenshots from a video presented in a grid.
   - [3.1 Error in UnicodeEncode](#31-error-in-unicodeencode)
 - [4. Version History](#4-version-history)
   - [4.1 Log](#41-log)
+    - [v1.2](#v12)
     - [v1.1](#v11)
     - [v1.0](#v10)
 - [5. Information](#5-information)
@@ -89,13 +90,25 @@ If you get an error dealing with UnicodeEncoding errors like:
     File "C:\Python311\Lib\encodings\cp1252.py", line 19, in encode  
     UnicodeEncodeError: 'charmap' codec can't encode character '\u0440' in position 59: character maps to <undefined>
 
-Run the following command in terminal to make sure you are using UTF-8 which has all of the unicode characters.
+For windows systems, command prompt:
+
+    set PYTHONIOENCODING=utf-8
+
+PowerShell:
+
+    $env:PYTHONIOENCODING = "utf-8"
+
+Fow linux:
 
     export PYTHONIOENCODING=utf-8  
 
 # 4. Version History
 
 ## 4.1 Log
+
+### v1.2
+    - Added direct mode vsgm.py, "python vsgm.py [path]"
+    - Bugfix: KeyError: 'width', ffmpeg.probe() function is not finding the width key in the first stream of the video file's metadata.
 
 ### v1.1 
     - Added videfilename and length in upper left corner  
