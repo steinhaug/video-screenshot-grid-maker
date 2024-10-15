@@ -7,28 +7,31 @@ def extract_screens_from_video(videofile_path, filename="", parts=25):
 
     if os.path.exists(videofile_path):
         probe = ffmpeg.probe(videofile_path)
-        time = float(probe['streams'][0]['duration']) // 2
-        width = probe['streams'][0]['width']
+        # Filter for video streams only
+        video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
 
-        # Set how many spots you want to extract a video from. 
-        #parts = 25
+        if video_stream:
+            time = float(video_stream['duration']) // 2
+            width = video_stream['width']
 
-        intervals = time // parts
-        intervals = int(intervals)
-        interval_list = [(i * intervals, (i + 1) * intervals) for i in range(parts)]
-        i = 0
+            intervals = int(time) // parts
+            interval_list = [(i * intervals, (i + 1) * intervals) for i in range(parts)]
+            i = 0
 
-        for item in interval_list:
-            (
-                ffmpeg
-                .input(videofile_path, ss=item[1])
-                .filter('scale', width, -1)
-                .output('image' + str(i) + '.jpg', vframes=1)
-                .run()
-            )
-            i += 1
+            for item in interval_list:
+                (
+                    ffmpeg
+                    .input(videofile_path, ss=item[1])
+                    .filter('scale', width, -1)
+                    .output(f'image{i}.jpg', vframes=1)
+                    .run()
+                )
+                i += 1
 
-        return time
+            return time
+        else:
+            print("No video stream found in the file.")
+            return ""
     else:
         print(f"Video file does not exist, skipping")
         return ""
@@ -42,7 +45,7 @@ if __name__ == "__main__":
         else:
             print("File {file_to_check} does not exist.")
     else:
-        video_to_process = 'e:/video/some-videofile.mp4'
+        video_to_process = 'g:/__video/some-videofile.mp4'
         user_response = input(f"Continue and process '{video_to_process}' for screenshots? (Yes/No): ").strip().lower()
         if user_response == 'yes':
             extract_screens_from_video(video_to_process, '')
