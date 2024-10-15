@@ -1,2 +1,5 @@
 __pycache__
 image*.jpg
+video*.mp4
+tmp/*.json
+frames/**/*
